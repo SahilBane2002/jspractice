@@ -1,0 +1,671 @@
+/* style.css for The Lost Sunflower */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+.scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: opacity 1.5s ease;
+  opacity: 0;
+}
+.scene.active {
+  display: flex;
+  opacity: 1;
+}
+
+.bg, video.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay, .veil {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.center {
+  position: relative;
+  z-index: 2;
+  max-width: 90%;
+}
+
+.center h1, .center h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 10px;
+  color: #ffd369;
+}
+.center p {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  line-height: 1.5;
+  color: #eee;
+}
+
+button {
+  background: #ffd369;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background: #ffcb5c;
+}
+
+/* Captions */
+/* .caption {
+  position: absolute;
+  bottom: 8vh;
+  width: 100%;
+  text-align: center;
+  z-index: 3;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
+  animation: fadeUp 1.8s ease both;
+}
+
+.caption .headline {
+  font-size: clamp(1.4rem, 4vw, 2.3rem);
+  color: #ffeeb3;
+  font-weight: 600;
+  text-shadow: 0 0 12px rgba(255, 200, 100, 0.7);
+  margin-bottom: 0.3em;
+}
+
+.caption .subtitle {
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 300;
+} */
+
+/* Handwritten quotes (replace captions) */
+/* Wrapper for quote and instruction text */
+.quote-block {
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 85%;
+  z-index: 3;
+}
+
+/* Quote text */
+.quote {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  color: #fff8e1;
+  text-shadow: 0 0 14px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  animation: fadeInQuote 2.5s ease forwards 0.5s;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+}
+
+/* Instruction line (appears later) */
+.instruction {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 10px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  animation: fadeInInstruction 2s ease forwards 2.8s; /* delayed fade-in */
+}
+
+/* Animations */
+@keyframes fadeInQuote {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInInstruction {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Optional: alternate quote alignment for subtle variety */
+.scene:nth-of-type(odd) .quote { text-align: center; }
+.scene:nth-of-type(even) .quote { text-align: center; }
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Progress Ring / Petal HUD */
+.petals {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+}
+
+.petal {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: #1b1016;
+  background: radial-gradient(circle at 40% 40%, #fffbd1 0%, #ffe58a 50%, #f0c040 100%);
+  opacity: 0.6;
+  transition: 0.25s;
+}
+
+.petal.on {
+  opacity: 1;
+  transform: translateY(-3px);
+  box-shadow: 0 0 10px rgba(255, 223, 100, 0.8);
+}
+
+/* Glowing Petal (Scene 1) */
+/* Refined glowing petal */
+/* Refined glowing petal */
+.petal-dot {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff6d1 0%, #ffd369 45%, #c99600 85%);
+  box-shadow: 0 0 10px 3px rgba(255, 209, 78, 0.5), 0 0 25px 8px rgba(255, 209, 78, 0.2);
+  z-index: 20;
+  animation: gentlePulse 2.8s ease-in-out infinite;
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.petal-dot:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.petal-dot:hover {
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+@keyframes gentlePulse {
+  0%, 100% { box-shadow: 0 0 10px 3px rgba(255, 210, 80, 0.6); }
+  50% { box-shadow: 0 0 25px 10px rgba(255, 220, 120, 0.85); }
+}
+
+
+
+@keyframes pulseGold {
+  from { transform: scale(0.96); }
+  to { transform: scale(1.06); }
+}
+
+.petal-dot::before,
+.petal-dot::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 221, 130, 0.4), transparent 70%);
+  animation: glowTrail 2.5s ease-out infinite;
+}
+
+.petal-dot::after { animation-delay: 1.2s; }
+
+@keyframes glowTrail {
+  0% { transform: scale(0.8); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Floating Light (Scene 2) */
+.firefly {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, #ffd369 60%, rgba(255, 211, 105, 0) 75%);
+  box-shadow: 0 0 14px #ffd369, 0 0 28px rgba(255, 211, 105, 0.4);
+  cursor: pointer;
+  z-index: 15;
+}
+
+/* Dual smile hotspots (Scene 3) */
+.hotspot {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  transition: 0.3s;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+.hotspot.tapped {
+  background: rgba(255, 211, 105, 0.6);
+  box-shadow: 0 0 18px rgba(255, 211, 105, 0.9);
+}
+
+
+/* Candle Trail (Scene 4) */
+.candle {
+  position: absolute;
+  font-size: 26px;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  animation: flicker 1.5s infinite alternate ease-in-out;
+  cursor: pointer;
+  z-index: 12;
+}
+@keyframes flicker {
+  from { filter: brightness(0.9); transform: translate(-50%, -48%) scale(1.05); }
+  to { filter: brightness(1.2); transform: translate(-50%, -52%) scale(0.95); }
+}
+
+/* Smudge (Scene 5) */
+.smudge {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(12px);
+  transition: backdrop-filter 1.5s ease, opacity 1s ease;
+  z-index: 10;
+  cursor: grab;
+}
+
+.smudge.cleaning {
+  backdrop-filter: blur(8px);
+}
+
+.smudge.cleaned {
+  backdrop-filter: blur(0px);
+  background: rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.smudge-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  z-index: 3;
+  touch-action: none;
+}
+.smudge-canvas:active {
+  cursor: grabbing;
+}
+
+
+
+/* Heart trace (Scene 6) */
+.heart-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.heart-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  font-size: 80px;
+  color: #ff7eb6;
+  opacity: 0;
+  animation: heartPop 1s ease forwards;
+}
+
+@keyframes heartPop {
+  0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+  40% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+/* Food tap (Scene 7) */
+.pulse {
+  animation: pulseFood 1.5s infinite;
+}
+@keyframes pulseFood {
+  0%,100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Snow video (Scene 9) */
+video.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ending screen */
+.center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+.bigheart { font-size: 64px; }
+
+@media (max-width: 768px) {
+  .caption { font-size: 1rem; bottom: 40px; }
+  button { font-size: 1rem; padding: 10px 22px; }
+}
+
+/* Camera flash overlay (Scene 3) */
+.flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  z-index: 20;
+  animation: flashFade 240ms ease-out forwards;
+}
+@keyframes flashFade {
+  0% { opacity: 0; }
+  10% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+.quiz {
+  position: relative;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quiz input {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 8px auto;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.quiz input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.quiz button {
+  background: #ffd369;
+  color: #000;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.quiz-title {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  color: #ffd369;
+}
+
+
+.cheese-wrap {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+}
+
+.cheese-line {
+  width: 4px;
+  height: 0;
+  background: linear-gradient(to bottom, #ffed8a, #f5b800);
+  margin: 0 auto;
+  border-radius: 4px;
+  transition: height 2s ease;
+  box-shadow: 0 0 10px rgba(255, 200, 0, 0.6);
+}
+
+.cheese-handle {
+  font-size: 2.2rem;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 10px;
+  transition: transform 0.2s ease;
+}
+
+.cheese-handle.stretching {
+  animation: wiggle 0.8s ease-in-out infinite;
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+}
+
+.cheese-line.stretching {
+  height: 120px;
+}
+
+.cheese-line.melted {
+  height: 160px;
+  background: linear-gradient(to bottom, #ffd369, #ff9900);
+}
+
+.hold-text {
+  margin-top: 14px;
+  color: #ffeeba;
+  font-size: 1.1rem;
+  text-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Snowfall overlay */
+/* Snowfall overlay - fixed */
+.snowfall {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.snowfall span {
+  position: absolute;
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: fall 10s linear infinite;
+}
+
+/* Animate individual flakes */
+@keyframes fall {
+  0% {
+    transform: translateY(-10px) translateX(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+/* Ensure video is behind everything else */
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* .caption {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #ffecb3;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  z-index: 3;
+}
+ */
+
+
+ .scene[data-type="snow"] .caption .headline {
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.9);
+  color: #fffaf2;
+}
+
+/* Collage finale (Scene 10) */
+.collage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 4px;
+  z-index: 0;
+}
+
+.collage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.collage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9);
+  transition: transform 0.8s ease;
+}
+
+.collage img:hover {
+  transform: scale(1.05);
+}
+
+/* Final fading message */
+.final-message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ffeeb3;
+  z-index: 2;
+  max-width: 80%;
+  margin: 0 auto;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeInText 10s ease forwards;
+}
+
+.final-message p {
+  opacity: 0;
+  animation: fadeInLine 1s forwards;
+}
+
+.final-message p:nth-child(1) { animation-delay: 1s; }
+.final-message p:nth-child(2) { animation-delay: 3s; }
+.final-message p:nth-child(3) { animation-delay: 6s; }
+.final-message p:nth-child(4) { animation-delay: 9s; }
+.final-message p:nth-child(5) { animation-delay: 12s; }
+.final-message p:nth-child(6) { animation-delay: 15s; }
+
+@keyframes fadeInText {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInLine {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+

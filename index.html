@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Lost Sunflower 🌻</title>
+
+  <!-- Handwritten font -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="app">
+    <div class="frame vignette">
+
+      <!-- HUD -->
+      <div class="hud">
+        <div class="petals" id="petals"></div>
+      </div>
+
+      <!-- SCENES -->
+      <section class="scene active" id="scene1" data-type="petal" data-img="1_sunflower.jpeg"
+  data-quote="Where it all began 🌻 — the first spark that made everything else make sense."
+  data-instruction="Find the glowing petal."></section>
+
+<section class="scene" id="scene2" data-type="light" data-img="2_college.jpeg"
+  data-quote="Those golden, careless days ☀️ — when laughter came easy and time stood still."
+  data-instruction="Catch the floating light."></section>
+
+<section class="scene" id="scene3" data-type="smile" data-img="3_fav.jpeg"
+  data-quote="That smile I can never forget 💫 — it wasn’t just joy; it was home."
+  data-instruction="Double-tap anywhere to capture."></section>
+
+<section class="scene" id="scene4" data-type="candle" data-img="5_nightdate.jpeg"
+  data-quote="A night that still hums softly 🎶 — every flicker of light felt like a heartbeat."
+  data-instruction="Answer the questions to light the candle."></section>
+
+<section class="scene" id="scene5" data-type="smudge" data-img="6_funny.jpeg"
+  data-quote="Our little chaos, our laughter — every blur, every giggle, perfectly us."
+  data-instruction="Press and hold to clear the blur."></section>
+
+<section class="scene" id="scene6" data-type="heart" data-img="7_bangalore.jpeg"
+  data-quote="Miles apart, hearts never left ❤️ — distance only made the love louder."
+  data-instruction="Draw a heart to continue."></section>
+
+<section class="scene" id="scene7" data-type="food" data-img="4_tigeryaki.jpeg"
+  data-quote="Flavors of us 🍜 — how we turned the ordinary into something unforgettable."
+  data-instruction="Hold the cheese to stretch it out."></section>
+
+<section class="scene" id="scene8" data-type="reunion" data-img="8_normal.jpeg"
+  data-quote="Our quiet kind of magic ✨ — no grand gestures, just love that feels like peace."
+  data-instruction="Tap anywhere to continue."></section>
+
+<section class="scene" id="scene9" data-type="snow" data-video="9_snow.mp4"
+  data-quote="Snow, and the silence before goodbye ❄️ — some goodbyes are too soft to say."
+  data-instruction="Wait for the snow to fall."></section>
+
+      <!-- Collage Finale -->
+      <section class="scene" id="scene10" data-type="collage" data-title="Our Story in Frames 💛">
+        <div class="collage"></div>
+        <div class="overlay"></div>
+        <div class="final-message">
+          <p>Happy 6 years, my boo.</p>
+          <p>I love you so much, and it aches my heart to celebrate another year without you by my side. These photos are just a glimpse of all the moments, emotions, and memories I’ve shared with you.</p>
+          <p>You always ask how I still stick around even when you trouble me so much — it’s because of this. It’s because of us. It’s these moments that I love with you. I can’t be this comfortable, this full of emotion and liveliness, with anyone else.</p>
+          <p>We’ve grown together, and I’m so grateful that you’re such an integral part of my growing-up story. Six years have passed, and I can’t wait to spend a lifetime more with you. But we’ll get to that later — for now, I’m just happy to be your love for the past six years.</p>
+          <p>We’ve been through so many ups and downs, yet I’m glad we always found our way back to each other. I’m glad we both stayed strong and kept fighting for us — even in moments when many wouldn’t have.</p>
+          <p>I’m so deeply in love with you, and every time I see you, I fall for you all over again. 💛</p>
+        </div>
+      </section>
+
+      <!-- Ending -->
+      <section class="scene" id="ending">
+        <div class="center">
+          <div class="bigheart">💖</div>
+          <h2>You’ve found every petal.</h2>
+          <p>Happy 6 years, my love — see you this December 🌻</p>
+          <button id="replay">Replay Journey</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <audio id="bg-music" loop preload="auto">
+  <source src="media/song.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
